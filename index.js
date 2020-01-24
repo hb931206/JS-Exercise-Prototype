@@ -91,6 +91,12 @@ Car.prototype.fill = function(gallons){
 
 Car.prototype.drive = function(distance){
   this.odometer = this.odometer + distance;
+  this.tank = this.tank - (distance / this.milesPerGallon);
+  if ((distance/this.milesPerGallon) > this.tank){
+    this.odometer += (this.tank * this.milesPerGallon);
+    this.tank = 0;
+    return`I ran out of fuel at ${this.odometer} miles!`;
+  }
   
 }
 
@@ -120,10 +126,10 @@ Baby.prototype = Object.create(Person.prototype);
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. This will equal the window/console Object when in the global scope
+  2. When preceding a dot that calls a function on a object the object before the dot equal this.
+  3. This refers to the function on an object that is created and returned by a constructor.
+  4. This is implied when you use a .call or .apply.
 */
 
 
